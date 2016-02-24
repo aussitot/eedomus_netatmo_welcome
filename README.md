@@ -227,7 +227,7 @@ Ce paramètre peut être modifier dans le fichier NW-Config.php
 $cache_duree = 30; //durée du cache d'identification en mn
 ```
 
-SI CELA NE FONCTIONNE PAS : Il est possible que netatmo n'ai pas bien enregistré l'url de votre webhook.
+**SI CELA NE FONCTIONNE PAS** : Il est possible que netatmo n'ai pas bien enregistré l'url de votre webhook.
 Faites alors la manipulation suivante (qui est un peu chiante à cause d'un bug que je n'arrive pas à résoudre mais qui fonctionne) :
 
 - Vérifiez que vos login/password netatmo sont bien présent dans le fichier NW-Config.php
