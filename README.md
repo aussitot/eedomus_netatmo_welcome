@@ -171,8 +171,7 @@ Faites alors la manipulation suivante (qui est un peu chiante à cause d'un bug 
 - lancez l'url : ```http://www.votreserveur.com/netatmo/NW-Eedomus.php?mode=2```
 - attendre que dans l'eedomus les deux états access_token et refresh_token soit de nouveau remplis
 - Lancez l'url : ```http://www.votreserveur.com/netatmo/NW-WebhookRegistration.php?action=add```
-- lancez de nouveau l'url : ```http://www.votreserveur.com/netatmo/NW-Eedomus.php?mode=2
-```
+- lancez de nouveau l'url : ```http://www.votreserveur.com/netatmo/NW-Eedomus.php?mode=2```
 - Vous pouvez éventuellement supprimer de votre fichier NW-Config.php vos identifiants et password netatmo. Vous n'en aurez plus besoin.
 - attendre éventuellement 24h car si l'url de votre webhook était éronée netatmo à blacklisté celle-ci pendant 24h
 
@@ -196,6 +195,7 @@ Récupérez la valeurs du code API de chaque état
 ## Etape 13
 Modifiez le fichier NW-Config.php
 Pour chaque personne dont vous voulez gérer la présence, créez une ligne avec son nom (tel que définit dans l'application netatmo welcome) et le code API de l'etat (ou de la macro) qui va gerer la personne.
+
 ```php
 //-------- Personnes
 //Pour chaque personne dont vous voulez gérer la présence, créer une ligne avec son nom (tel que définit dans l'application netatmo welcome) et le code API de l'etat (ou de la macro) qui va gerer la personne
@@ -235,8 +235,7 @@ Faites alors la manipulation suivante (qui est un peu chiante à cause d'un bug 
 - lancez l'url : ```http://www.votreserveur.com/netatmo/NW-Eedomus.php?mode=2 ```
 - attendre que dans l'eedomus les deux états access_token et refresh_token soit de nouveau remplis
 - Lancez l'url : ```http://www.votreserveur.com/netatmo/NW-WebhookRegistration.php?action=add```
-- lancez de nouveau l'url : ```http://www.votreserveur.com/netatmo/NW-Eedomus.php?mode=2
-```
+- lancez de nouveau l'url : ```http://www.votreserveur.com/netatmo/NW-Eedomus.php?mode=2```
 - Vous pouvez éventuellement supprimer de votre fichier NW-Config.php vos identifiants et password netatmo. Vous n'en aurez plus besoin.
 - attendre éventuellement 24h car si l'url de votre webhook était éronée netatmo à blacklisté celle-ci pendant 24h
 
