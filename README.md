@@ -39,7 +39,8 @@ $client_secret = "yyyyyyyyyyyyyy"; //a recuperer sur https://dev.netatmo.com
 ```
 
 ## Etape 2
-Copiez les fichiers du projet dans le répertoire "netatmo" sur votre serveur
+- Copiez les fichiers du projet dans le répertoire "netatmo" sur votre serveur.
+- Renommez le fichier NW-Config-Blank.php en NW-Config.php
 
 ## Etape 3
 Pour chacune de vos caméras Welcome créez dans eedomus une caméra (Configuration/Ajouter ou supprimer un périphérique/Ajouter un autre type de caméra/Caméra - Autre).
