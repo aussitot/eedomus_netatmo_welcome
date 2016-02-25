@@ -182,7 +182,7 @@ Si vous souhaitez utiliser vos caméra comme dispositif de reconnaissance facial
 
 **Si vous n'avez pas activé la gestion de la détection de mouvement (donc les etapes 9 et 10)**
 ## Etape 11
-retournez sur [url]https://dev.netatmo.com[/url], dans les paramètres de votre application remplissez la zone "Webhook URL" par l'adresse ```http://www.votreserveur.com/netatmo/NW-Webhook.php```
+retournez sur https://dev.netatmo.com, dans les paramètres de votre application remplissez la zone "Webhook URL" par l'adresse ```http://www.votreserveur.com/netatmo/NW-Webhook.php```
 A chaque fois qu'un évènement va se produire sur vos caméras, Netatmo va envoyer un message a cette adresse.
 
 ## Etape 12
@@ -245,14 +245,14 @@ Amusez-vous bien !
 
 # Parametres
 ## Pour NW-Eedomus.php
-- action = live - Mettre à jour les snapshots live des cameras
-- action = event - Mise à jour de la vignette du dernier évènement
-- action = all (ou rien) - Mettre à jour les snapshots live des cameras et la vignette du dernier évènement
+- action = live (Mettre à jour les snapshots live des cameras)
+- action = event (Mise à jour de la vignette du dernier évènement)
+- action = all ou vide (Mettre à jour les snapshots live des cameras et la vignette du dernier évènement)
 
-- mode = 1 - Mise a jour depuis eedomus
-- mode = 2 - raz des données d'authentification stockées dans l'eedomus
+- mode = 1 (Mise a jour depuis eedomus)
+- mode = 2 (raz des données d'authentification stockées dans l'eedomus)
 
-- option = images - Affichage des images lors de l'execution du script
+- option = images (Affichage des images lors de l'execution du script)
 
 ## Pour NW-Live.php
 Parametres Formats video (ajoutez la variable quality = poor/low/medium/high dans l'url).
@@ -264,7 +264,7 @@ Par défaut la qualité est 'medium'
 - Si quality = high : BANDWIDTH=3000000,CODECS="avc1.420028",NAME="1920x1080"
 
 ## Pour NW-WebhookRegistration.php
-- action = add - subscribe to Webhook
-- action = drop - unsubscribe to Webhook
+- action = add (subscribe to Webhook)
+- action = drop (unsubscribe to Webhook)
 
 - url = url de la page webhook a enregistrer
