@@ -1,3 +1,6 @@
+[![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg)]()
+![License](https://img.shields.io/badge/LICENSE-MIT-ff69b4.svg?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen.svg?style=flat-square)
 # eedomus_netatmo_welcome
 Scripts d'intégration des caméras Netatmo Welcome pour eedomus
 script cree par twitter:@Havok pour la eedomus
