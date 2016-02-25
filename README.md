@@ -1,6 +1,7 @@
-[![GitHub release](https://img.shields.io/github/release/aussitot/eedomus_netatmo_welcome.svg)]()
-![License](https://img.shields.io/badge/LICENSE-MIT-ff69b4.svg?style=flat-square)
+[![GitHub release](https://img.shields.io/github/release/aussitot/eedomus_netatmo_welcome.svg?style=flat-square)](https://github.com/aussitot/eedomus_netatmo_welcome/releases)
+![GitHub license](https://img.shields.io/github/license/aussitot/eedomus_netatmo_welcome.svg?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Complete-brightgreen.svg?style=flat-square)
+[![Twitter](https://img.shields.io/badge/twitter-@havok-blue.svg?style=flat-square)](http://twitter.com/havok)
 # eedomus_netatmo_welcome
 Scripts d'intégration des caméras Netatmo Welcome pour eedomus
 script cree par twitter:@Havok pour la eedomus
