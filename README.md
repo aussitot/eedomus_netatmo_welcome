@@ -266,3 +266,5 @@ Par défaut la qualité est 'medium'
 ## Pour NW-WebhookRegistration.php
 - action = add - subscribe to Webhook
 - action = drop - unsubscribe to Webhook
+
+- url = url de la page webhook a enregistrer

@@ -50,7 +50,7 @@ if ($mode == 1)
 	$params = json_decode($contents, true);
 	$refresh_token = $params['body']['last_value'];
 	if ($refresh_token == 0) { $refresh_token = ''; }
-	
+
 	$eedomusaccess_tokenurl = "https://api.eedomus.com/get?action=periph.caract&periph_id=$idaccess_token&api_user=$apiuser&api_secret=$apisecret";
 	$contents = file_get_contents($eedomusaccess_tokenurl);
 	$params = json_decode($contents, true);
@@ -60,7 +60,7 @@ if ($mode == 1)
     	$access_token = $paramstab[0];
   	}
   	if ($access_token == 0) { $access_token = ''; }
-  	if ($debug==true) { error_log(date("d-m-Y H:i:s").' time '.time().'**'.$paramstab[1]."\n", 3, "NW.log"); }	
+  	if ($debug==true) { error_log(date("d-m-Y H:i:s").' time '.time().'**'.$paramstab[1]."\n", 3, "NW.log"); }
 	if ($debug==true) { error_log(date("d-m-Y H:i:s").' eedomusaccess_token '.$access_token."\n", 3, "NW.log"); }
 	if ($debug==true) { error_log(date("d-m-Y H:i:s").' eedomusrefresh_token '.$refresh_token."\n", 3, "NW.log"); }
 } elseif ($mode == 2)
@@ -70,7 +70,7 @@ if ($mode == 1)
 	$majrefresh_token = "https://api.eedomus.com/set?action=periph.value&periph_id=$idrefresh_token&value=0&api_user=$apiuser&api_secret=$apisecret&format=xml";
 	$contents = file_get_contents($majrefresh_token);
 	die("raz des données d'authentification stockées dans l'eedomus effectuée");
-} else 
+} else
 {
 	$access_token = $_COOKIE["access_token"];
 	$refresh_token = $_COOKIE["refresh_token"];
@@ -111,9 +111,9 @@ if ($access_token == '')
 		$time_expire = (string) time()+$expires_in;
 
 		//sauvegarde des parametres
-		$access_cookieOK = setcookie("access_token", $params['access_token'], time()+$params['expires_in']+1); 
+		$access_cookieOK = setcookie("access_token", $params['access_token'], time()+$params['expires_in']+1);
 		$refresh_cookieOK = setcookie("refresh_token", $params['refresh_token'], time()+60*60*24*30); //expire dans 30j
-		
+
 		if ($mode == 1)
 		{
 			//sauvegarde des parametres sur les etats eedomus
@@ -122,7 +122,7 @@ if ($access_token == '')
 			$majrefresh_token = "https://api.eedomus.com/set?action=periph.value&periph_id=$idrefresh_token&value=$refresh_token&api_user=$apiuser&api_secret=$apisecret&format=xml";
 			$contents = file_get_contents($majrefresh_token);
 		}
-		
+
 		if ($debug==true) { error_log(date("d-m-Y H:i:s").' process refresh_token '.$access_token.'/'.$refresh_token." ".$access_cookieOK." ".$refresh_cookieOK."\n", 3, "NW.log"); }
   }
   else
@@ -162,9 +162,9 @@ if ($access_token == '')
 		$time_expire = (string) time()+$expires_in;
 
 		//sauvegarde des parametres
-		$access_cookieOK = setcookie("access_token", $params['access_token'], time()+$params['expires_in']+1); 
+		$access_cookieOK = setcookie("access_token", $params['access_token'], time()+$params['expires_in']+1);
 		$refresh_cookieOK = setcookie("refresh_token", $params['refresh_token'], time()+60*60*24*30); //expire dans 30j
-		
+
 		if ($mode == 1)
 		{
 			//sauvegarde des parametres sur les etats eedomus
@@ -173,7 +173,7 @@ if ($access_token == '')
 			$majrefresh_token = "https://api.eedomus.com/set?action=periph.value&periph_id=$idrefresh_token&value=$refresh_token&api_user=$apiuser&api_secret=$apisecret&format=xml";
 			$contents = file_get_contents($majrefresh_token);
 		}
-			
+
 		if ($debug==true) { error_log(date("d-m-Y H:i:s").' process authentification '.$access_token.'/'.$refresh_token." ".$access_cookieOK." ".$refresh_cookieOK."\n", 3, "NW.log"); }
 
    }
@@ -214,7 +214,7 @@ $eventList = $params['body']['homes'][0]['events'];
 //echo '<pre>', HtmlSpecialChars(print_r($params['body']['homes'][0]['events'])), '</pre>';
 
 //------------------------mise à jour live
-if ($action == 'live' || $action == 'all') 
+if ($action == 'live' || $action == 'all')
 {
 	for ($i=0; $i < count($cameraList) ;$i++)
 	{
@@ -235,13 +235,13 @@ if ($action == 'live' || $action == 'all')
 			$ftpliveOK[$i] = ftp_put($ftp,"Snapshot$i.jpg" , "Snapshot$i.jpg", FTP_BINARY);
 			ftp_close($ftp);
 			if ($debug==true) { error_log(date("d-m-Y H:i:s").' process ftp live'.$i.' '.$ftpliveOK[$i]."\n", 3, "NW.log"); }
-		}		
+		}
 	}
-	$resulmaj = date("Y-m-d H:i:s");	
+	$resulmaj = date("Y-m-d H:i:s");
 }
 
 //------------------------mise à jour vignette dernier évènement
-if ($action == 'event' || $action == 'all') 
+if ($action == 'event' || $action == 'all')
 {
 	//Connexion ftp
 	$ftp = ftp_connect($ftp_server) or die("Impossible de se connecter au serveur FTP");
@@ -249,7 +249,7 @@ if ($action == 'event' || $action == 'all')
 	# switch to passive mode (mandatory on Ovh shared hosting)
 	ftp_pasv( $ftp, true );
 
-	for ($i=0; $i < count($eventList) ;$i++) 
+	for ($i=0; $i < count($eventList) ;$i++)
 	{
 		//---------------- Acces aux donnes
 		//echo '<pre>', HtmlSpecialChars(print_r($eventList[$i])), '</pre>';
@@ -271,13 +271,13 @@ if ($action == 'event' || $action == 'all')
 
 if (empty($option) && !empty($action))
 {
-	//----------- Génération du XML 
+	//----------- Génération du XML
 	echo '<?xml version="1.0"?>';
 	echo '<racine>';
 	echo '<cameras>';
 	echo '<maj>'.$resulmaj.'</maj>';
 	echo '</cameras>';
-	echo '</racine>';	
+	echo '</racine>';
 }
 
 ?>
