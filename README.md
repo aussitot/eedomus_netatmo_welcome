@@ -6,7 +6,7 @@
 Scripts d'intégration des caméras Netatmo Welcome pour eedomus
 script cree par twitter:@Havok pour la eedomus
 
-NB : Script à installer sur serveur web/php autre que l'eedomus elle-même
+NB : Script à installer sur un serveur web/php autre que l'eedomus elle-même
 
 # INSTALLATION
 Bonjour,
