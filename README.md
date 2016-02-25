@@ -1,4 +1,4 @@
-[![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg)]()
+[![GitHub release](https://img.shields.io/github/release/aussitot/eedomus_netatmo_welcome.svg)]()
 ![License](https://img.shields.io/badge/LICENSE-MIT-ff69b4.svg?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Complete-brightgreen.svg?style=flat-square)
 # eedomus_netatmo_welcome
