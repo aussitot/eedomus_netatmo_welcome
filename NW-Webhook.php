@@ -3,10 +3,6 @@
 //error_reporting(E_ALL);
 //ini_set("display_errors", 1);
 
-/* script cree par twitter:@Havok pour la eedomus
- Version 1.2 / 10 novembre 2015	 / Gestion de la detection de mouvement ainsi que de l'identification des personnes
- Version 1.0 / 03 novembre 2015	 / 1ere version stable disponible*/
-
 define('__ROOT__', dirname(dirname(__FILE__)));
 require_once 'NW-Config.php';
 
@@ -39,7 +35,7 @@ if(!is_null($jsonData) && !empty($jsonData))
     {
         //webhooks notifications are json encoded, you need to first decode them in order to access it as PHP arrays
         $notif = json_decode($jsonData, TRUE);
-        
+
         //autres messages ?
         if(isset($notif['message']) && $notif['event_type'] != 'person' && $notif['event_type'] != 'movement')
         {
@@ -50,13 +46,13 @@ if(!is_null($jsonData) && !empty($jsonData))
         if(isset($notif['message']) && isset($notif['camera_id']) && ($notif['event_type'] == 'person' || $notif['event_type'] == 'movement'))
         {
         	if ($debug==true) { error_log(date("d-m-Y H:i:s").' webhook '.$notif['message']."*".$notif['event_type']."*".$notif['camera_id']."\n", 3, "NW.log"); }
-           
+
            if (!empty($cameraMAC[$notif['camera_id']]['id-API'])) {
            		//lancement de la macro présence associée à la caméra
            		$majpresence = "https://api.eedomus.com/set?action=periph.macro&macro=".$cameraMAC[$notif['camera_id']]['id-API']."&api_user=$apiuser&api_secret=$apisecret";
 		   		$contents = file_get_contents($majpresence);
 		   }
-           
+
            //enregistrement de l'image si présente
            if (isset($notif['snapshot_id']) && isset($notif['snapshot_key']))
            {
@@ -65,13 +61,13 @@ if(!is_null($jsonData) && !empty($jsonData))
 				ftp_login($ftp, $cameraMAC[$notif['camera_id']]['ftp_login'], $cameraMAC[$notif['camera_id']]['ftp_password']);
 				# switch to passive mode (mandatory on Ovh shared hosting)
 				ftp_pasv( $ftp, true );
-				
+
            		$image_url = "https://api.netatmo.com/api/getcamerapicture?image_id=".$notif['snapshot_id']."&key=".$notif['snapshot_key'];
 		   		file_put_contents("Snapshot.jpg", fopen("$image_url", 'r'));
 		   		$ftpeventOK = ftp_put($ftp,"Snapshot.jpg" , "Snapshot.jpg", FTP_BINARY);
 				ftp_close($ftp);
 				if ($debug==true) { error_log(date("d-m-Y H:i:s").' webhook ftp camera '.$ftpeventOK."\n", 3, "NW.log"); }
-				
+
 				//Mise à jour de la camera "event"
 				//Connexion ftp
 				$ftp = ftp_connect($ftp_server) or die("Impossible de se connecter au serveur FTP");
@@ -80,19 +76,19 @@ if(!is_null($jsonData) && !empty($jsonData))
 				ftp_pasv( $ftp, true );
 		   		$ftpeventOK = ftp_put($ftp,"Snapshot.jpg" , "Snapshot.jpg", FTP_BINARY);
 				ftp_close($ftp);
-				if ($debug==true) { error_log(date("d-m-Y H:i:s").' webhook ftp event '.$ftpeventOK."\n", 3, "NW.log"); }			
+				if ($debug==true) { error_log(date("d-m-Y H:i:s").' webhook ftp event '.$ftpeventOK."\n", 3, "NW.log"); }
            }
-           
+
            //enregistrement de l'identification
            if ($notif['event_type'] == 'person' && isset($notif['message']))
            {
 				if (!isset($userstate)) { $userstate = 1; }
-				
+
 				//lecture du fichier cache
     			$lecture_fichier_cache = file_get_contents($cache_file);
      		    // récupère la structure du tableau cache
     			$tab_cache = unserialize($lecture_fichier_cache);
-         			
+
 				foreach($users as $cle => $element)
 				{
 				  if (strpos($notif['message'], $cle) !== false)
@@ -110,13 +106,13 @@ if(!is_null($jsonData) && !empty($jsonData))
 						$tab_cache[$cle] = time() + $cache_duree*60;
 						unlink($cache_file);
 						file_put_contents($cache_file, serialize($tab_cache));
-												
+
 						if ($debug==true) { error_log(date("d-m-Y H:i:s").' webhook authentification '.$cle." pas de cache\n", 3, "NW.log"); }
 					} else {
 						if ($debug==true) { error_log(date("d-m-Y H:i:s").' webhook authentification '.$cle." CACHE\n", 3, "NW.log"); }
 					}
-				  }				  
-				}				
+				  }
+				}
            }
         }
     }
