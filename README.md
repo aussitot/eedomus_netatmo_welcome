@@ -11,13 +11,13 @@ NB : Script à installer sur serveur web/php autre que l'eedomus elle-même
 # INSTALLATION
 Bonjour,
 
-Voici un petit script pour intégrer dans l'interface eedomus les caméras Netatmo.
+Voici un  script pour intégrer dans l'interface eedomus les caméras Netatmo Welcome.
 
-**Prérequis** : Il faut disposer d'un serveur web autre que l'eedomus elle-même.  
+**Prérequis** : Il faut disposer d'un serveur web/php autre que l'eedomus elle-même.  
 
 **Ce que ca fait** : Ca va vous permettre de
 - créer des caméras "virtuelles" qui afficheront de manière régulière les images prise par vos caméras Netatmo Welcome.
-- créer des états "mouvement" afin de profiter de la détection de mouvement des caméras en tant réel
+- utiliser les caméras comme détecteur de mouvement
 - d'accéder au live mais pas depuis l'interface eedomus
 - d'accéder à la reconnaissance faciale des caméras pour gérer la présence de riri, fifi, loulou
 
