@@ -60,7 +60,7 @@ if ($access_token == '')
 		$refresh_token = $params['refresh_token'];
 
 		//sauvegarde des parametres
-		setcookie("access_token", $params['access_token'], time()+$params['expires_in']+1); 
+		setcookie("access_token", $params['access_token'], time()+$params['expires_in']+1);
 		setcookie("refresh_token", $params['refresh_token'], time()+60*60*24*30); //expire dans 30j
   }
   else
@@ -71,13 +71,13 @@ if ($access_token == '')
 
 		if(empty($code)) {
 			$_SESSION['state'] = md5(uniqid(rand(), TRUE));
-			$dialog_url="https://api.netatmo.net/oauth2/authorize?client_id=" 
+			$dialog_url="https://api.netatmo.net/oauth2/authorize?client_id="
 			. $app_id . "&redirect_uri=" . urlencode($my_live_url)
 			. "&scope=" . $scope
 			. "&state=" . $_SESSION['state'];
 
 			echo("<script> top.location.href='" . $dialog_url . "'</script>");
-		} 
+		}
 
 		if($_SESSION['state'] && ($_SESSION['state']===$_GET['state'])) {
 			$token_url = "https://api.netatmo.net/oauth2/token";
@@ -110,9 +110,9 @@ if ($access_token == '')
 			$refresh_token = $params['refresh_token'];
 
 			//sauvegarde des parametres
-			setcookie("access_token", $params['access_token'], time()+$params['expires_in']+1); 
+			setcookie("access_token", $params['access_token'], time()+$params['expires_in']+1);
 			setcookie("refresh_token", $params['refresh_token'], time()+60*60*24*30); //expire dans 30j
-			//setcookie("expire_time", time()+$params['expires_in'], time()+$params['expires_in']); 
+			//setcookie("expire_time", time()+$params['expires_in'], time()+$params['expires_in']);
 		} else {
 			die("The state does not match. You may be a victim of CSRF.");
 		}
@@ -161,8 +161,8 @@ for ($i=0; $i < count($cameraList) ;$i++)
 		$VpnUrl = $camera['vpn_url'];
 		$LiveVideo = $VpnUrl."/live/files/".$quality."/index.m3u8";
 		if ($debug==true) { error_log(date("d-m-Y H:i:s").' process livevideo '."\n", 3, "NW.log"); }
-		echo '<video controls="" autoplay="" name="media" style="max-width: 100%; max-height: 100%;"><source src="'.$LiveVideo.'" type="application/x-mpegurl"></video>';			
-	}		
-}	
+		echo '<video controls="" autoplay="" name="media" style="max-width: 100%; max-height: 100%;"><source src="'.$LiveVideo.'" type="application/x-mpegurl"></video>';
+	}
+}
 
 ?>

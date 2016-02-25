@@ -3,11 +3,17 @@
 //error_reporting(E_ALL);
 //ini_set("display_errors", 1);
 
+/* script cree par twitter:@Havok pour la eedomus
+ Version 1.2 / 10 novembre 2015	 / Gestion de la detection de mouvement ainsi que de l'identification des personnes
+ Version 1.0 / 03 novembre 2015	 / 1ere version stable disponible*/
+
 define('__ROOT__', dirname(dirname(__FILE__)));
 require_once 'NW-Config.php';
 
 //------ Variables
 $cache_file = 'NW-Cache.txt'; //nom du fichier cache
+
+if ($debug==true) { file_put_contents('Webhooks_call.txt', date("Y-m-d H:i:s"). "\n", FILE_APPEND); }
 
 /**
 * Webhooks Endpoint.
@@ -33,6 +39,12 @@ if(!is_null($jsonData) && !empty($jsonData))
     {
         //webhooks notifications are json encoded, you need to first decode them in order to access it as PHP arrays
         $notif = json_decode($jsonData, TRUE);
+        
+        //autres messages ?
+        if(isset($notif['message']) && $notif['event_type'] != 'person' && $notif['event_type'] != 'movement')
+        {
+            file_put_contents('Webhooks_examples.txt', $notif['message']. "\n", FILE_APPEND);
+        }
 
         //Printing the notification message in a file. If you want to access other available webhooks fields please see https://dev.netatmo.com/doc/webhooks/webhooks_camera
         if(isset($notif['message']) && isset($notif['camera_id']) && ($notif['event_type'] == 'person' || $notif['event_type'] == 'movement'))
