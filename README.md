@@ -3,7 +3,7 @@
 ![Status](https://img.shields.io/badge/Status-Complete-brightgreen.svg?style=flat-square)
 [![Twitter](https://img.shields.io/badge/twitter-@havok-blue.svg?style=flat-square)](http://twitter.com/havok)
 # eedomus_netatmo_welcome
-Scripts d'intégration des caméras Netatmo Welcome pour eedomus
+Scripts d'intégration des caméras Netatmo Welcome et Presence pour eedomus
 script cree par twitter:@Havok pour la eedomus
 
 NB : Script à installer sur un serveur web/php autre que l'eedomus elle-même
@@ -11,15 +11,15 @@ NB : Script à installer sur un serveur web/php autre que l'eedomus elle-même
 # INSTALLATION
 Bonjour,
 
-Voici un  script pour intégrer dans l'interface eedomus les caméras Netatmo Welcome.
+Voici un  script pour intégrer dans l'interface eedomus les caméras Netatmo Welcome et/ou Presence.
 
 **Prérequis** : Il faut disposer d'un serveur web/php autre que l'eedomus elle-même.  
 
 **Ce que ca fait** : Ca va vous permettre de
-- créer des caméras "virtuelles" qui afficheront de manière régulière les images prise par vos caméras Netatmo Welcome.
-- utiliser les caméras comme détecteur de mouvement
+- créer des caméras "virtuelles" qui afficheront de manière régulière les images prise par vos caméras Netatmo.
+- utiliser les caméras comme détecteur de mouvement (pour les caméras Welcome)
 - d'accéder au live mais pas depuis l'interface eedomus
-- d'accéder à la reconnaissance faciale des caméras pour gérer la présence de riri, fifi, loulou
+- d'accéder à la reconnaissance faciale des caméras pour gérer la présence de riri, fifi, loulou (pour les caméras Welcome)
 
 **Ce qu'on va faire**
 - On va créer une (ou plusieurs si vous en avez plusieurs...) caméras qui vont afficher les photos du "live" et une caméra qui affichera la vignette du dernier évènement détecté par vos caméras (présence de X, présence inconnue, mouvement, etc...)
@@ -47,7 +47,7 @@ $client_secret = "yyyyyyyyyyyyyy"; //a recuperer sur https://dev.netatmo.com
 - Renommez le fichier NW-Config-Blank.php en NW-Config.php
 
 ## Etape 3
-Pour chacune de vos caméras Welcome créez dans eedomus une caméra (Configuration/Ajouter ou supprimer un périphérique/Ajouter un autre type de caméra/Caméra - Autre).
+Pour chacune de vos caméras créez dans eedomus une caméra (Configuration/Ajouter ou supprimer un périphérique/Ajouter un autre type de caméra/Caméra - Autre).
 Mettez n'importe quelle adresse IP dans la zone IP locale (on ne pourra pas voir le live pour l'instant) et cachez les caneaux liés (en cliquant sur l'oeil a coté).
 Récupérez les valeurs du login et password FTP générés automatiquement par eedomus.
 Récupérez dans l'application Netatmo Welcome sur smartphone ou sur le site Netatmo l'adresse MAC de votre ou vos caméra(s) (c'est de la forme 00:00:00:00:00:00)
@@ -132,13 +132,13 @@ En cas de soucis vous pouvez réinitialisez l'authentification stockée dans la 
 - lançant l'url : ```http://www.votreserveur.com/netatmo/NW-Eedomus.php?mode=2```
 
 Et bonus pour ceux qui auraient pas tout compris voici ce que ca donne :
-J'ai 2 caméra "physiques" Netatmo Welcome, une dans l'entrée et une dans le salon.
+J'ai 2 caméra "physiques" Netatmo, une dans l'entrée et une dans le salon.
 Sur l'interface j'ai donc 3 caméras (ba oui^^faut suivre...)
 La caméra "Entrée" me donne l'image prise par celle-ci il y a 5mn (car c'est le délai que j'ai choisi à l'étape 7)
 La caméra "Salon" me donne l'image prise par celle-ci il y a 5mn
 La caméra "Maison" me donne l'image du dernier évènement détecté par les 2 caméras (présence de X, présence inconnue, mouvement, etc...). Quand il n'y a personne à la maison cette image ne bougera pas, alors que celle des 2 autres sera bien mise à jour (avec une maison vide...)
 
-**Les étapes suivantes sont optionnelles**
+**Les étapes suivantes sont optionnelles, elles ne fonctionnent pour l'instant que pour les caméras Netatmo Welcome**
 
 # Gestion de la détection de mouvement
 

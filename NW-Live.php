@@ -20,7 +20,7 @@ $quality = $_GET['quality']; $quality = ($quality == '')?'medium':$quality;
 $app_id = $client_id;
 $app_secret = $client_secret;
 $my_live_url = "http".(!empty($_SERVER['HTTPS'])?"s":"")."://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
-$scope = "read_camera access_camera";
+$scope = "read_camera access_camera read_presence access_presence";
 
 //-------------- Recupération des parametres precedents
 $access_token = $_COOKIE["access_token"];

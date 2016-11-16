@@ -24,7 +24,7 @@ $mode = $_GET['mode'];
 $app_id = $client_id;
 $app_secret = $client_secret;
 $my_live_url = "http".(!empty($_SERVER['HTTPS'])?"s":"")."://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
-$scope = "read_camera access_camera";
+$scope = "read_camera access_camera read_presence access_presence";
 $resulmaj = "erreur";
 
 //-------------- Compatibilité avec ancienne version <1.2
