@@ -71,20 +71,25 @@ $ftp_password = "password camera evenement"; //password ftp de la camera évène
 ```
 
 ## Etape 4
-Créez deux périphérique "état" dans l'eedomus Configuration/Ajouter ou supprimer un périphérique/Ajouter un autre type de périphérique/Etat
+Créez 4 périphériques "état" dans l'eedomus Configuration/Ajouter ou supprimer un périphérique/Ajouter un autre type de périphérique/Etat
 C'est eux qui vont stocker les données d'authentification
 
-- Etat 1 : Nom : Netatmo access_token, Usage : Autre indicateur, Type de données : Texte
-- Etat 2 : Nom : Netatmo refresh_token, Usage : Autre indicateur, Type de données : Texte
+- Etat 1 : Nom : Netatmo access_token 1, Usage : Autre indicateur, Type de données : Texte
+- Etat 2 : Nom : Netatmo access_token 2, Usage : Autre indicateur, Type de données : Texte
+- Etat 3 : Nom : Netatmo refresh_token 1, Usage : Autre indicateur, Type de données : Texte
+- Etat 4 : Nom : Netatmo refresh_token 2, Usage : Autre indicateur, Type de données : Texte
 
-Vous pouvez mettre ces 2 états en invisible, il ne servent que de stockage des données d'authentification
+Vous pouvez mettre ces 4 états en invisible, il ne servent que de stockage des données d'authentification
 
-Récupérez les valeurs du code API des deux états générés automatiquement par eedomus.
+Récupérez les valeurs du code API des 4 états générés automatiquement par eedomus.
 Modifiez le fichier NW-Config.php pour y reporter ces valeurs (en ne confondant pas l'access_token et le refresh_token).
 ```PHP
 //------- Etats de sauvegarde de l'authentification
-$idaccess_token = '12345'; //code api eedomus de l etat access_token
-$idrefresh_token = '54321'; //code api eedomus de l etat refresh_token
+$idaccess_token1 = '12345'; //code api eedomus de l etat access_token 1
+$idaccess_token2 = '25795'; //code api eedomus de l etat access_token 1
+$idrefresh_token1 = '54321'; //code api eedomus de l etat refresh_token 1
+$idrefresh_token2 = '79134'; //code api eedomus de l etat refresh_token 2
+
 ```
 
 ## Etape 5
