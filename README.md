@@ -8,6 +8,38 @@ script cree par twitter:@Havok pour la eedomus
 
 NB : Script à installer sur un serveur web/php autre que l'eedomus elle-même
 
+# Mise  à jour version 1.4 en 1.5
+Merci à l'équipe eedomus qui a décidé de limiter la valeur des champs texte à 40 caractères ....
+Il a donc fallu adapter le script. Il faut également procéder aux manipulations suivantes :
+
+##Etape 1
+Créez 2 périphériques "état" dans l'eedomus Configuration/Ajouter ou supprimer un périphérique/Ajouter un autre type de périphérique/Etat
+En plus des deux qui existaient déja
+
+- Etat 1 : Nom : Netatmo access_token 2, Usage : Autre indicateur, Type de données : Texte
+- Etat 2 : Nom : Netatmo refresh_token 2, Usage : Autre indicateur, Type de données : Texte
+
+Vous pouvez mettre ces 2 états en invisible, il ne servent que de stockage des données d'authentification
+
+Récupérez les valeurs du code API des 2 nouveaux états générés automatiquement par eedomus.
+Modifiez le fichier NW-Config.php pour y reporter ces valeurs (en ne confondant pas l'access_token et le refresh_token).
+```PHP
+//------- Etats de sauvegarde de l'authentification
+$idaccess_token1 = '12345'; //code api eedomus de l etat access_token 1 (ancien $idaccess_token à renommer en $idaccess_token1)
+$idaccess_token2 = '25795'; //code api eedomus de l etat access_token 2 (celui que l'on vient de créer)
+$idrefresh_token1 = '54321'; //code api eedomus de l etat refresh_token 1 (ancien $idrefresh_token à renommer en $idrefresh_token1)
+$idrefresh_token2 = '79134'; //code api eedomus de l etat refresh_token 2 (celui qu'on vient de créer)
+```
+
+##Etape 2
+Vérifier que vos identifiants et password netatmo sont dans le fichier NW-Config.php (ou remettez les si vous les aviez supprimés).
+Lançez l'url : ```http://www.votreserveur.com/netatmo/NW-Eedomus.php?mode=2```
+
+Normalement vous pouvez supprimer du fichier NW-Config.php vos identifiants et password netatmo.
+Vous n'en aurez plus besoin.
+
+C'est tout pour la mise à jour.
+
 # INSTALLATION
 Bonjour,
 
@@ -86,7 +118,7 @@ Modifiez le fichier NW-Config.php pour y reporter ces valeurs (en ne confondant 
 ```PHP
 //------- Etats de sauvegarde de l'authentification
 $idaccess_token1 = '12345'; //code api eedomus de l etat access_token 1
-$idaccess_token2 = '25795'; //code api eedomus de l etat access_token 1
+$idaccess_token2 = '25795'; //code api eedomus de l etat access_token 2
 $idrefresh_token1 = '54321'; //code api eedomus de l etat refresh_token 1
 $idrefresh_token2 = '79134'; //code api eedomus de l etat refresh_token 2
 
