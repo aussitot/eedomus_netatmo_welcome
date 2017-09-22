@@ -10,8 +10,11 @@ $apiuser = 'wwwwwwwwww'; //api_user eedomus
 $apisecret = 'zzzzzzzzzzzzzzzz'; //api_secret eedomus
 
 //------- Etats de sauvegarde de l'authentification
-$idaccess_token = '12345'; //code api eedomus de l etat access_token
-$idrefresh_token = '54321'; //code api eedomus de l etat refresh_token
+$idaccess_token = '12345'; //code api eedomus de l etat access_token 1
+$idaccess_token = '25795'; //code api eedomus de l etat access_token 2
+
+$idrefresh_token = '54321'; //code api eedomus de l etat refresh_token 1
+$idrefresh_token = '79134'; //code api eedomus de l etat refresh_token 2
 
 //------- Caméra Physiques
 //Pour chaque caméra physique Netatmo Welcome créez 3 lignes  en remplacant 00:00:00:00:00:00 par l'adresse MAC de la caméra (que vous trouverez dans les paramètres de l'application netatmo welcome)

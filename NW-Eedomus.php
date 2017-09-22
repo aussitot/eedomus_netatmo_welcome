@@ -45,30 +45,55 @@ if (empty($ftp_login0))
 if ($mode == 1)
 {
 	//récupération des parametres sur les etats eedomus
-	$eedomusrefresh_tokenurl = "https://api.eedomus.com/get?action=periph.caract&periph_id=$idrefresh_token&api_user=$apiuser&api_secret=$apisecret";
+	$eedomusrefresh_tokenurl = "https://api.eedomus.com/get?action=periph.caract&periph_id=$idrefresh_token1&api_user=$apiuser&api_secret=$apisecret";
 	$contents = file_get_contents($eedomusrefresh_tokenurl);
 	$params = json_decode($contents, true);
-	$refresh_token = $params['body']['last_value'];
-	if ($refresh_token == 0) { $refresh_token = ''; }
+	$refresh_token1 = $params['body']['last_value'];
 
-	$eedomusaccess_tokenurl = "https://api.eedomus.com/get?action=periph.caract&periph_id=$idaccess_token&api_user=$apiuser&api_secret=$apisecret";
+	$eedomusrefresh_tokenurl = "https://api.eedomus.com/get?action=periph.caract&periph_id=$idrefresh_token2&api_user=$apiuser&api_secret=$apisecret";
+	$contents = file_get_contents($eedomusrefresh_tokenurl);
+	$params = json_decode($contents, true);
+	$refresh_token2 = $params['body']['last_value'];
+
+	if ($refresh_token1 == 0 || $refresh_token2 == 0) {
+		$refresh_token ='';
+	} else {
+		$refresh_token = $refresh_token1."|".$refresh_token2;
+	}
+
+	$eedomusaccess_tokenurl = "https://api.eedomus.com/get?action=periph.caract&periph_id=$idaccess_token1&api_user=$apiuser&api_secret=$apisecret";
+	$contents = file_get_contents($eedomusaccess_tokenurl);
+	$params = json_decode($contents, true);
+	$access_token1 = $params['body']['last_value'];
+
+	$eedomusaccess_tokenurl = "https://api.eedomus.com/get?action=periph.caract&periph_id=$idaccess_token2&api_user=$apiuser&api_secret=$apisecret";
 	$contents = file_get_contents($eedomusaccess_tokenurl);
 	$params = json_decode($contents, true);
 	$paramstab = explode("-", $params['body']['last_value']);
 	if (time() < $paramstab[1])
   	{
-    	$access_token = $paramstab[0];
+    	$access_token2 = $paramstab[0];
   	}
-  	if ($access_token == 0) { $access_token = ''; }
-  	if ($debug==true) { error_log(date("d-m-Y H:i:s").' time '.time().'**'.$paramstab[1]."\n", 3, "NW.log"); }
+
+	if ($access_token1 == 0 || $access_token2 == 0) {
+		$access_token ='';
+	} else {
+		$access_token = $access_token1."|".$access_token2;
+	}
+
+  if ($debug==true) { error_log(date("d-m-Y H:i:s").' time '.time().'**'.$paramstab[1]."\n", 3, "NW.log"); }
 	if ($debug==true) { error_log(date("d-m-Y H:i:s").' eedomusaccess_token '.$access_token."\n", 3, "NW.log"); }
 	if ($debug==true) { error_log(date("d-m-Y H:i:s").' eedomusrefresh_token '.$refresh_token."\n", 3, "NW.log"); }
 } elseif ($mode == 2)
 {
-	$majaccess_token = "https://api.eedomus.com/set?action=periph.value&periph_id=$idaccess_token&value=0&api_user=$apiuser&api_secret=$apisecret&format=xml";
-	$contents = file_get_contents($majaccess_token);
-	$majrefresh_token = "https://api.eedomus.com/set?action=periph.value&periph_id=$idrefresh_token&value=0&api_user=$apiuser&api_secret=$apisecret&format=xml";
-	$contents = file_get_contents($majrefresh_token);
+	$majaccess_token1 = "https://api.eedomus.com/set?action=periph.value&periph_id=$idaccess_token1&value=0&api_user=$apiuser&api_secret=$apisecret&format=xml";
+	$contents = file_get_contents($majaccess_token1);
+	$majaccess_token2 = "https://api.eedomus.com/set?action=periph.value&periph_id=$idaccess_token2&value=0&api_user=$apiuser&api_secret=$apisecret&format=xml";
+	$contents = file_get_contents($majaccess_token2);
+	$majrefresh_token1 = "https://api.eedomus.com/set?action=periph.value&periph_id=$idrefresh_token1&value=0&api_user=$apiuser&api_secret=$apisecret&format=xml";
+	$contents = file_get_contents($majrefresh_token1);
+	$majrefresh_token2 = "https://api.eedomus.com/set?action=periph.value&periph_id=$idrefresh_token2&value=0&api_user=$apiuser&api_secret=$apisecret&format=xml";
+	$contents = file_get_contents($majrefresh_token2);
 	die("raz des données d'authentification stockées dans l'eedomus effectuée");
 } else
 {
@@ -117,9 +142,20 @@ if ($access_token == '')
 		if ($mode == 1)
 		{
 			//sauvegarde des parametres sur les etats eedomus
-			$majaccess_token = "https://api.eedomus.com/set?action=periph.value&periph_id=$idaccess_token&value=$access_token-$time_expire&api_user=$apiuser&api_secret=$apisecret&format=xml";
+			$paramsaccess_token = explode("|", $access_token);
+			$access_token1 = $paramsaccess_token[0];
+			$access_token2 = $paramsaccess_token[1];
+			$majaccess_token = "https://api.eedomus.com/set?action=periph.value&periph_id=$idaccess_token1&value=$access_token1&api_user=$apiuser&api_secret=$apisecret&format=xml";
 			$contents = file_get_contents($majaccess_token);
-			$majrefresh_token = "https://api.eedomus.com/set?action=periph.value&periph_id=$idrefresh_token&value=$refresh_token&api_user=$apiuser&api_secret=$apisecret&format=xml";
+			$majaccess_token = "https://api.eedomus.com/set?action=periph.value&periph_id=$idaccess_token2&value=$access_token2-$time_expire&api_user=$apiuser&api_secret=$apisecret&format=xml";
+			$contents = file_get_contents($majaccess_token);
+
+			$paramsrefresh_token = explode("|", $refresh_token);
+			$refresh_token1 = $paramsrefresh_token[0];
+			$refresh_token2 = $paramsrefresh_token[1];
+			$majrefresh_token = "https://api.eedomus.com/set?action=periph.value&periph_id=$idrefresh_token1&value=$refresh_token1&api_user=$apiuser&api_secret=$apisecret&format=xml";
+			$contents = file_get_contents($majrefresh_token);
+			$majrefresh_token = "https://api.eedomus.com/set?action=periph.value&periph_id=$idrefresh_token2&value=$refresh_token2&api_user=$apiuser&api_secret=$apisecret&format=xml";
 			$contents = file_get_contents($majrefresh_token);
 		}
 
@@ -168,9 +204,20 @@ if ($access_token == '')
 		if ($mode == 1)
 		{
 			//sauvegarde des parametres sur les etats eedomus
-			$majaccess_token = "https://api.eedomus.com/set?action=periph.value&periph_id=$idaccess_token&value=$access_token-$time_expire&api_user=$apiuser&api_secret=$apisecret&format=xml";
+			$paramsaccess_token = explode("|", $access_token);
+			$access_token1 = $paramsaccess_token[0];
+			$access_token2 = $paramsaccess_token[1];
+			$majaccess_token = "https://api.eedomus.com/set?action=periph.value&periph_id=$idaccess_token1&value=$access_token1&api_user=$apiuser&api_secret=$apisecret&format=xml";
 			$contents = file_get_contents($majaccess_token);
-			$majrefresh_token = "https://api.eedomus.com/set?action=periph.value&periph_id=$idrefresh_token&value=$refresh_token&api_user=$apiuser&api_secret=$apisecret&format=xml";
+			$majaccess_token = "https://api.eedomus.com/set?action=periph.value&periph_id=$idaccess_token2&value=$access_token2-$time_expire&api_user=$apiuser&api_secret=$apisecret&format=xml";
+			$contents = file_get_contents($majaccess_token);
+
+			$paramsrefresh_token = explode("|", $refresh_token);
+			$refresh_token1 = $paramsrefresh_token[0];
+			$refresh_token2 = $paramsrefresh_token[1];
+			$majrefresh_token = "https://api.eedomus.com/set?action=periph.value&periph_id=$idrefresh_token1&value=$refresh_token1&api_user=$apiuser&api_secret=$apisecret&format=xml";
+			$contents = file_get_contents($majrefresh_token);
+			$majrefresh_token = "https://api.eedomus.com/set?action=periph.value&periph_id=$idrefresh_token2&value=$refresh_token2&api_user=$apiuser&api_secret=$apisecret&format=xml";
 			$contents = file_get_contents($majrefresh_token);
 		}
 
