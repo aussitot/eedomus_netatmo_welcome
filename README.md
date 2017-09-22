@@ -12,7 +12,7 @@ NB : Script à installer sur un serveur web/php autre que l'eedomus elle-même
 Merci à l'équipe eedomus qui a décidé de limiter la valeur des champs texte à 40 caractères ....
 Il a donc fallu adapter le script. Il faut également procéder aux manipulations suivantes :
 
-##Etape 1
+## Etape 1
 Créez 2 périphériques "état" dans l'eedomus Configuration/Ajouter ou supprimer un périphérique/Ajouter un autre type de périphérique/Etat
 En plus des deux qui existaient déja
 
@@ -31,7 +31,7 @@ $idrefresh_token1 = '54321'; //code api eedomus de l etat refresh_token 1 (ancie
 $idrefresh_token2 = '79134'; //code api eedomus de l etat refresh_token 2 (celui qu'on vient de créer)
 ```
 
-##Etape 2
+## Etape 2
 Vérifier que vos identifiants et password netatmo sont dans le fichier NW-Config.php (ou remettez les si vous les aviez supprimés).
 Lançez l'url : ```http://www.votreserveur.com/netatmo/NW-Eedomus.php?mode=2```
 
