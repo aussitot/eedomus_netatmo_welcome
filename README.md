@@ -63,6 +63,10 @@ Certaines fonction sont optionnelles. Si vous ne voulez pas gérer la detection 
 De même les options d'intimité définies dans l'application Netatmo Welcome sont bien prises en compte. Si vous avez défini que lors de la présence de madame il ne faut pas enregistrer de video alors vous n'aurez pas de vignette lorsque la caméra détecte le visage de madame (mais vous aurez quand meme les vignettes définies à interval régulier)
 
 ## Etape 1
+- Copiez les fichiers du projet dans le répertoire "netatmo" sur votre serveur.
+- Renommez le fichier NW-Config-Blank.php en NW-Config.php
+
+## Etape 2
 créez une application sur https://dev.netatmo.com (ne remplissez que les champs obligatoires) pour récupérer le "Client id" et "Client secret"
 Modifiez le fichier NW-Config.php pour y reporter ces valeurs ainsi que vos login et password Netatmo
 
@@ -73,10 +77,6 @@ $netatmo_password = "netatmo password"; //votre password pour le site https://my
 $client_id = "xxxxxxxxxxxxxxx"; //a recuperer sur https://dev.netatmo.com
 $client_secret = "yyyyyyyyyyyyyy"; //a recuperer sur https://dev.netatmo.com
 ```
-
-## Etape 2
-- Copiez les fichiers du projet dans le répertoire "netatmo" sur votre serveur.
-- Renommez le fichier NW-Config-Blank.php en NW-Config.php
 
 ## Etape 3
 Pour chacune de vos caméras créez dans eedomus une caméra (Configuration/Ajouter ou supprimer un périphérique/Ajouter un autre type de caméra/Caméra - Autre).
